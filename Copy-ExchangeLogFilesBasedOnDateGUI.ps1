@@ -56,12 +56,12 @@ Function Update-WPFProgressBarAndStatus {
             )
             Write-Host "BOOKMARK inside Update-WPFProgressBarAndStatus"
     IF ($Reset){
-        write-Host "BOOKMARK - inside WPF Progress bar update - RESET requested" -fore green
+        write-Host "BOOKMARK - inside WPF Progress bar update - RESET requested" -ForegroundColor green
         $wpf.$FormName.IsEnabled = $true
         $wpf.$ProgressBarName.Value = 0
         StatusLabel "Ready !"
     } Else {
-        write-Host "BOOKMARK - inside WPF Progress bar update - setting progress bar value and title etx...." -fore green
+        write-Host "BOOKMARK - inside WPF Progress bar update - setting progress bar value and title etx...." -ForegroundColor green
 
         If ($color){
             $wpf.$ProgressBarName.Color = $Color
