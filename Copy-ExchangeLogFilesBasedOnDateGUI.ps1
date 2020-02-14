@@ -280,7 +280,7 @@ $FormName = $NamedNodes[0].Name
 #Things to load when the WPF form is loaded aka in memory
 $wpf.$FormName.Add_Loaded({
     #Load default variables for the form fields, even if these are already on the XAML code (I prefer like this)
-    $wpf.txtServersListCSV.Text = "HarounElPoussah, HarounElPoussah, HarounElPoussah"
+    $wpf.txtServersListCSV.Text = "Server1, Server2, Server3"
     $wpf.txtSourceFolderPath.Text = "C:\temp\ExchangeRCALogsSubset"
     $wpf.txtTargetCentralDir.Text = "C:\temp\GUIScriptTest" + (Get-Date -Format ddMMyyyyhhmmss)
     $wpf.StartDatePicker.SelectedDate = Get-Date -Year 2020 -Month 01 -Day 20
