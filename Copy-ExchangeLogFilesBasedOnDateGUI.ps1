@@ -16,7 +16,7 @@ Function Title1 {
     [string]$StarsBeforeAndAfter = ""
     $RemainingLength = $TotalLength - $TitleLength
     If ($($RemainingLength % 2) -ne 0) {
-        $Title = $Title + " "
+        $Title = $Title + "*"
     }
     $Counter = 0
     For ($i=1;$i -le $(($RemainingLength)/2);$i++) {
@@ -69,8 +69,6 @@ Function Update-WPFProgressBarAndStatus {
         $wpf.$ProgressBarName.Value = $p
         #$wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
         # $wpf.$ProgressBarName.Foreground
-        write-Host "ATTENTION" -ForegroundColor red
-        Write-Host $msg -ForegroundColor red
         Title1 $msg; StatusLabel $msg
         # If ($p -eq 100){
         #     $msg = "Done!"
