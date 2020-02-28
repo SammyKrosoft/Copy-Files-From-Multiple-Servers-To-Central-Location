@@ -16,7 +16,7 @@ Function Title1 {
     [string]$StarsBeforeAndAfter = ""
     $RemainingLength = $TotalLength - $TitleLength
     If ($($RemainingLength % 2) -ne 0) {
-        $Title = $Title + "*"
+        $Title = $Title + " "
     }
     $Counter = 0
     For ($i=1;$i -le $(($RemainingLength)/2);$i++) {
@@ -56,12 +56,12 @@ Function Update-WPFProgressBarAndStatus {
             )
             Write-Host "BOOKMARK inside Update-WPFProgressBarAndStatus"
     IF ($Reset){
-        write-Host "BOOKMARK - inside WPF Progress bar update - RESET requested" -ForegroundColor green
+        write-Host "BOOKMARK - inside WPF Progress bar update - RESET requested" -fore green
         $wpf.$FormName.IsEnabled = $true
         $wpf.$ProgressBarName.Value = 0
         StatusLabel "Ready !"
     } Else {
-        write-Host "BOOKMARK - inside WPF Progress bar update - setting progress bar value and title etx...." -ForegroundColor green
+        write-Host "BOOKMARK - inside WPF Progress bar update - setting progress bar value and title etx...." -fore green
 
         If ($color){
             $wpf.$ProgressBarName.Color = $Color
@@ -69,6 +69,8 @@ Function Update-WPFProgressBarAndStatus {
         $wpf.$ProgressBarName.Value = $p
         #$wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
         # $wpf.$ProgressBarName.Foreground
+        write-Host "ATTENTION" -ForegroundColor red
+        Write-Host $msg -ForegroundColor red
         Title1 $msg; StatusLabel $msg
         # If ($p -eq 100){
         #     $msg = "Done!"
@@ -278,7 +280,7 @@ $FormName = $NamedNodes[0].Name
 #Things to load when the WPF form is loaded aka in memory
 $wpf.$FormName.Add_Loaded({
     #Load default variables for the form fields, even if these are already on the XAML code (I prefer like this)
-    $wpf.txtServersListCSV.Text = "Server1, Server2, Server3"
+    $wpf.txtServersListCSV.Text = "HarounElPoussah, HarounElPoussah, HarounElPoussah"
     $wpf.txtSourceFolderPath.Text = "C:\temp\ExchangeRCALogsSubset"
     $wpf.txtTargetCentralDir.Text = "C:\temp\GUIScriptTest" + (Get-Date -Format ddMMyyyyhhmmss)
     $wpf.StartDatePicker.SelectedDate = Get-Date -Year 2020 -Month 01 -Day 20
@@ -304,8 +306,7 @@ $wpf.btnCopyFiles.add_Click({
 })
 $wpf.btnTestFiles.add_Click({
     # Update progressbar label ...
-    StatusLabel -msg "Please wait..."
-    $wpf.$FormName.IsEnabled = $false
+    $wpf.lblProgressBar.Content = "Please wait..."
     $wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
     if ([string]::IsNullOrEmpty($wpf.StartDatePicker.SelectedDate) -or [string]::IsNullOrEmpty($wpf.EndDatePicker.SelectedDate)) {
         MsgBox -msg "Either Start Date or End Date or both have not been selected ... please select date and try again" -Title "Missing dates" `
@@ -323,7 +324,6 @@ $wpf.btnTestFiles.add_Click({
             -EndDate $wpf.EndDatePicker.SelectedDate
     }
     #Reset Progress Bar Label
-    $wpf.$FormName.IsEnabled = $true
     Update-WPFProgressBarAndStatus -Reset
 })
 #endregion
