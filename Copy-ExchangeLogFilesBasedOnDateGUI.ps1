@@ -129,8 +129,8 @@ Function SKFileCopy {
     #Variable to point to the target directory
     ##### Replaced by parameter ### $StrTarget= "c:\temp\ExchangeRCALogs\"
     #Storing StartDate and EndDate in PowerShell format, using -Year -Month -Day to get rid of Date format MM/DD/YYYY DD/MM/YYYY ambiguity
-    ##### Replaced by parameret ###  $StartDate = (Get-date -Year 2020 -Month 01 -day 20)
-    ##### Replaced by parameret ###  $EndDate = (Get-date -Year 2020 -Month 01 -day 24)
+    ##### Replaced by paramere ###  $StartDate = (Get-date -Year 2020 -Month 01 -day 20)
+    ##### Replaced by paramere ###  $EndDate = (Get-date -Year 2020 -Month 01 -day 24)
 
     if (-not (Test-Path $StrTarget)){
         Write-Host "$StrTarget does not exist... creating it."
